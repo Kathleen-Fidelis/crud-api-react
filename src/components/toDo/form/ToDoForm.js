@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './ToDoForm.css'
+import { taskModel } from '../../../models'
 
 function ToDoForm(props) {
 
+    // const [task, setTask] = useState(taskModel)
     const [description, setDescription] = useState('')
 
     const submitEnter = (event) => {
@@ -11,12 +13,13 @@ function ToDoForm(props) {
             submit()
         } else if (event.key == 'Escape') {
             setDescription('')
+            // setTask(taskModel)
         }
     }
 
     const submit = () => {
-        console.log("foi")
-        setDescription('')
+        props.register(description)
+        // setTask(taskModel)
     }
 
     return(
@@ -32,6 +35,15 @@ function ToDoForm(props) {
                                     onChange={event => {setDescription(event.target.value)}}
                                     value={description}
                                     onKeyUp={submitEnter}/>
+                                    {/* <Form.Control type="text" 
+                                    placeholder="Digite a tarefa"
+                                    onChange={event => {
+                                        setTask({
+                                            ...task,
+                                            description: event.target.value})
+                                    }}
+                                    value={task.description}
+                                    onKeyUp={submitEnter}/> */}
                             </Form.Group>
                         </Col>
                         <Col>
